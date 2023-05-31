@@ -6,10 +6,12 @@
 ### Trumpiniai
 VIS - valstybinės informacinės sistemos
 
+<link rel="stylesheet" href="./mermaid.css">
+
 ```mermaid
 %%{init: { "flowchart": { "htmlLabels": true, "curve": "basis", "useMaxWidth":true } } }%%
 
-flowchart TD
+flowchart LR
 
 subgraph VKI IS
     direction RL
@@ -23,70 +25,76 @@ subgraph VKI IS
     APVIS
 end
 
+%% === APVIS ===
+APVIS
+%%APVA -->|Valdytojas|APVIS
+%%APVA -->|Tvarkytojas|APVIS
+
+VIISP -->|XML|APVIS
+KTPR -->APVIS
+JAR -->|XML|APVIS
+KOTIS -->APVIS
+
 %% === PENSEIS ===
 PENSEIS
-SPSC -->|Tvarkytojas|PENSEIS
+%%SPSC -->|Tvarkytojas|PENSEIS
 subgraph RC
     NTR
     GR
 end
-NTR --> PENSEIS
-GR --> PENSEIS
+NTR --> |XML|PENSEIS
+GR --> |XML|PENSEIS
 
 %% === SPĮP ===
 SSĮP
-APVA -->|Tvarkytojas|SSĮP
-APVA -->|Valdytojas|SSĮP
+%%APVA -->|Tvarkytojas|SSĮP
+%%APVA -->|Valdytojas|SSĮP
 
 %% === IKS ===
 IKS
-AM -->|Valdytojas|IKS
-AAD -->|Tvarkytojas|IKS
-AAA -->|Tvarkytojas|IKS
+%%AM -->|Valdytojas|IKS
+%%AAD -->|Tvarkytojas|IKS
+%%AAA -->|Tvarkytojas|IKS
 subgraph VMI
     IMIS
     MAIS
 end
-IMIS --> IKS
-MAIS --> IKS
+IMIS --> |XML|IKS
+MAIS --> |XML|IKS
 
 %% === GPAIS ===
 GPAIS
-AM -->|Valdytojas|GPAIS
-AAA -->|Tvarkytojas|GPAIS
+%%AM -->|Valdytojas|GPAIS
+%%AAA -->|Tvarkytojas|GPAIS
 subgraph RC
     AR
     JAR
 end
-subgraph IVPK
-    VIISP
-end
+
 ALIS --> GPAIS
 ATVR --> GPAIS
-JAR --> GPAIS
-AR --> GPAIS
-GR --> GPAIS
+JAR --> |XML|GPAIS
+AR --> |XML|GPAIS
+GR --> |XML|GPAIS
 IKS --> GPAIS
-VIISP --> GPAIS
+VIISP --> |XML|GPAIS
 
 %% === AAKIS ===
 AAKIS
-AM -->|Valdytojas|AAKIS
-AAD -->|Tvarkytojas|AAKIS
-VMT -->|Tvarkytojas|AAKIS
-GMU -->|Tvarkytojas|AAKIS
-LGT -->|Tvarkytojas|AAKIS
-VSTT -->|Tvarkytojas|AAKIS
-subgraph IVPK
-    VAIISIS
-end
+%%AM -->|Valdytojas|AAKIS
+%%AAD -->|Tvarkytojas|AAKIS
+%%VMT -->|Tvarkytojas|AAKIS
+%%GMU -->|Tvarkytojas|AAKIS
+%%LGT -->|Tvarkytojas|AAKIS
+%%VSTT -->|Tvarkytojas|AAKIS
+
 ALIS -->AAKIS
 UETK -->AAKIS
 STK -->AAKIS
-JAR -->AAKIS
-GR -->AAKIS
-GRPK -->AAKIS
-VAIISIS -->AAKIS
+JAR -->|XML|AAKIS
+GR -->|XML|AAKIS
+GRPK -->|XML|AAKIS
+VIISP -->|XML|AAKIS
 ATPR -->AAKIS
 
 %% === Infostatyba ===
@@ -94,16 +102,17 @@ Infostatyba
 subgraph RC
     NTK
 end
-AM -->|Valdytojas|Infostatyba
-KPD -->|Tvarkytojas|Infostatyba
-NŽT -->|Tvarkytojas|Infostatyba
-SPSC -->|Tvarkytojas|Infostatyba
+%%AM -->|Valdytojas|Infostatyba
+%%KPD -->|Tvarkytojas|Infostatyba
+%%NŽT -->|Tvarkytojas|Infostatyba
+%%SPSC -->|Tvarkytojas|Infostatyba
+
 JAR -->|XML|Infostatyba
 NTR -->|XML|Infostatyba
 AR-->|XML|Infostatyba
 GR -->|TXT|Infostatyba
 VIISP -->|XML|Infostatyba
-GPRK -->|XML|Infostatyba
+GRPK -->|XML|Infostatyba
 NTK -->|XML|Infostatyba
 TIIIS -->|Str.d.|Infostatyba
 Vartai -->|XML|Infostatyba
@@ -113,13 +122,14 @@ LEII -->|XML|Infostatyba
 
 %% === ALIS ===
 ALIS
-AM -->|Valdytojas|ALIS
-AM -->|Tvarkytojas|ALIS
-AAA -->|Tvarkytojas|ALIS
-AAD -->|Tvarkytojas|ALIS
-VMT -->|Tvarkytojas|ALIS
-LGT -->|Tvarkytojas|ALIS
-VSTT -->|Tvarkytojas|ALIS
+%%AM -->|Valdytojas|ALIS
+%%AM -->|Tvarkytojas|ALIS
+%%AAA -->|Tvarkytojas|ALIS
+%%AAD -->|Tvarkytojas|ALIS
+%%VMT -->|Tvarkytojas|ALIS
+%%LGT -->|Tvarkytojas|ALIS
+%%VSTT -->|Tvarkytojas|ALIS
+
 JAR -->|XML|ALIS
 AR -->|XML|ALIS
 NTR -->|XML|ALIS
@@ -130,14 +140,7 @@ AIVIKS -->ALIS
 MVK -->ALIS
 STK -->ALIS
 GRPK -->ALIS
-VAIISIS -->ALIS
+VIISP -->|XML|ALIS
 KVR -->ALIS
 
-%% === APVIS ===
-APVIS
-APVA -->|Valdytojas|APVIS
-APVA -->|Tvarkytojas|APVIS
-VIISP -->APVIS
-KTPR -->APVIS
-JAR -->APVIS
 ```
